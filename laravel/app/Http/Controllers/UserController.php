@@ -76,6 +76,12 @@ class UserController extends Controller
         */
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+
+              // Check if the authenticated user is an admin
+        if (Auth::user()->is_admin == 1) {
+            return redirect()->route('admin.dashboard'); // Redirect to the admin dashboard
+        }
+
             return redirect()->intended('/'); // Redirects to the home page
         }
 
@@ -124,4 +130,11 @@ class UserController extends Controller
 
         return redirect()->back()->with('success', 'Profile updated successfully!');
     }
+
+    public function index()
+{
+    $users = User::all(); // Fetch all users
+    return view('admin.users', compact('users')); // Pass users to the view
+}
+
 }

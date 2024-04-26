@@ -91,11 +91,12 @@
                 </select>
             </div>
             <div class="col-md-6">
-                <button type="submit" class="btn btn-primary mt-3">Add to Cart</button>
-                <a href="#" class="btn btn-success mt-3">View Details</a>
-            </div>
+                        <button type="submit" class="btn btn-primary mt-3">Add to Cart</button>
+                        <a href="{{ route('products.show', $product->id) }}" class="btn btn-success mt-3">View Details</a>
+                    </div>
         </div>
     </form>
+        
                     </div>
                 </div>
             </div>
