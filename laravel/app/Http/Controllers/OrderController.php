@@ -27,11 +27,13 @@ class OrderController extends Controller
 }
 
 
-    public function show(Order $order)
-    {
-        $orderDetails=OrderDetail::where('order_id', $order->id)->get();
-        return view('orders.show', compact('orderDetails'));
-    }
+public function show(Order $order)
+{
+    // This retrieves all order details linked to the specific order
+    $orderDetails = $order->orderDetails()->with('product')->get();
+    return view('orders.show', compact('order', 'orderDetails'));
+}
+
     
     // OrderController.php
 
@@ -68,6 +70,21 @@ public function processCheckout(Request $request)
 
     // Redirect to the order placed page with a success message
     return redirect()->route('order.placed')->with('success', 'Order placed successfully!');
+}
+    
+
+    public function indexAll()
+    {
+        $orders = Order::all();
+        return view('admin.manageorders', compact('orders'));
+    }
+
+    public function updateStatus(Order $order)
+{
+    $order->status = 'completed';
+    $order->save();
+
+    return redirect()->route('orders.indexAll')->with('success', 'Order status updated successfully.');
 }
 
 }

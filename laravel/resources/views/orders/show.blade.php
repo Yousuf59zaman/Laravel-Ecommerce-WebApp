@@ -7,8 +7,8 @@
     <title>Order Details</title>
 </head>
 <body>
-    <div class="container mt-5">
-    <h2>Order Details</h2>
+<div class="container mt-5">
+    <h2>Order Details for Order #{{ $order->order_id }}</h2>
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -19,17 +19,28 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($orderDetails as $detail)
+            @forelse($orderDetails as $detail)
+                <tr>
+                    <td>{{ $detail->product ? $detail->product->name : 'Product Deleted' }}</td>
+                    <td>{{ $detail->quantity }}</td>
+                    <td>${{ number_format($detail->price, 2) }}</td>
+                    <td>${{ number_format($detail->price * $detail->quantity, 2) }}</td>
+                </tr>
+            @empty
+                <tr><td colspan="4">No details found for this order.</td></tr>
+            @endforelse
             <tr>
-                <td>{{ $detail->product->name }}</td>
-                <td>{{ $detail->quantity }}</td>
-                <td>${{ number_format($detail->price, 2) }}</td>
-                <td>${{ number_format($detail->price * $detail->quantity, 2) }}</td>
+                <td>Total</td>
+                <td></td>
+                <td></td>
+                <td>${{ number_format($order->total, 2) }}</td>
             </tr>
-            @endforeach
         </tbody>
     </table>
+    <a href="{{ route('orders.index') }}" class="btn btn-secondary">Back to Orders</a>
 </div>
+
+
 
 
       <!-- bootstrap js and popper js -->

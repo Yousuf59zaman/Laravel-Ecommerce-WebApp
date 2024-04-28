@@ -50,7 +50,8 @@ class Order extends Model
      */
     public function orderDetails()
     {
-        return $this->hasMany(OrderDetail::class);
+        return $this->hasMany(OrderDetail::class, 'order_id');
     }
+    
 }
 

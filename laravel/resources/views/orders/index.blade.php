@@ -27,8 +27,8 @@
                     <td>{{ $order->status }}</td>
                     <td>{{ $order->created_at->format('d M Y') }}</td>
                     <td>
-                    <a href="{{ route('orders.show', ['order' => $order]) }}" class="btn btn-info">View Details</a>
-                 
+                    <a href="{{ route('orders.show', $order->order_id) }}" class="btn btn-info">View Details</a>
+                    
                  </td>
                  </tr>
                 @endforeach

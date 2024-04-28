@@ -12,7 +12,8 @@
      <a href="{{ url('login') }}" class="btn btn-primary">Log Out</a>
      <a href="{{ route('products.index') }}" class="btn btn-primary">View Products</a>
      <a href="{{ route('users.index') }}" class="btn btn-primary">View Users</a>
-
+     <a href="{{ route('orders.indexAll') }}" class="btn btn-primary">View Orders</a>
+      
      <!-- bootstrap js and popper js -->
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   

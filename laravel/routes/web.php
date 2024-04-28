@@ -50,6 +50,8 @@ Route::post('cart/remove/{product}', [CartController::class, 'remove'])->name('c
 // Display the checkout page
 Route::get('checkout', [CartController::class, 'checkout'])->name('checkout');
 
+
+
 // Post to actually process the checkout
 Route::post('process-checkout', [OrderController::class, 'processCheckout'])->name('process-checkout');
 Route::get('/order-placed', function () {
@@ -57,4 +59,6 @@ Route::get('/order-placed', function () {
 })->name('order.placed');
 Route::get('orderhistory', [OrderController::class, 'orderhistory'])->name('orderhistory');
 Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
+Route::get('ordersAll', [OrderController::class, 'indexAll'])->name('orders.indexAll');
 Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+Route::post('/admin/orders/{order}/update-status', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
