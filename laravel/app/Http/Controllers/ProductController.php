@@ -38,7 +38,7 @@ public function store(Request $request)
         'image' => 'required|image|max:2048', // 2MB Max
     ]);
 
-    $data['image'] = $request->file('image')->store('public/products');
+    $data['image'] = $request->file('image')->store('public/images');
 
     Product::create($data);
 
@@ -59,7 +59,7 @@ public function update(Request $request, Product $product)
     ]);
 
     if ($request->hasFile('image')) {
-        $data['image'] = $request->file('image')->store('public/products');
+        $data['image'] = $request->file('image')->store('public/images');
     }
 
     $product->update($data);

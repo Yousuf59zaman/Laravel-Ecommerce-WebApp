@@ -13,12 +13,7 @@ Route::post('register', [UserController::class, 'register']);
 Route::get('login', [UserController::class, 'showLoginForm'])->name('login');
 Route::post('login', [UserController::class, 'login']);
 Route::get('/admin/users', [UserController::class, 'index'])->name('users.index');
-Route::get('/', function () {
-    return view('home');
-});
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-
-
 
 
 Route::middleware(['auth'])->group(function () {
@@ -60,5 +55,5 @@ Route::get('/order-placed', function () {
 Route::get('orderhistory', [OrderController::class, 'orderhistory'])->name('orderhistory');
 Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
 Route::get('ordersAll', [OrderController::class, 'indexAll'])->name('orders.indexAll');
-Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+Route::get('orders/{order}', [OrderController::class, 'showDetails'])->name('orders.showDetails');
 Route::post('/admin/orders/{order}/update-status', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');

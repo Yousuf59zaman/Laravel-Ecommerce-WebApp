@@ -28,7 +28,7 @@
                 <td>{{ $order->status }}</td>
                 <td>{{ $order->created_at->format('d M Y') }}</td>
                 <td>
-                    <a href="{{ route('orders.show', $order->order_id) }}" class="btn btn-info">View Details</a>
+                    <a href="{{ route('orders.showDetails', $order->order_id) }}" class="btn btn-info">View Details</a>
                 </td>
                 <td>
                     <form action="{{ route('orders.updateStatus', $order->order_id) }}" method="POST">

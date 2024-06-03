@@ -11,27 +11,32 @@ use App\Models\OrderDetail;
 class OrderController extends Controller
 {
 
-    public function index()
-    {
-        $orders = Order::where('user_id', Auth::id())->get();
-        return view('orders.index', compact('orders'));
-    }
+    // public function index()
+    // {
+    //     $orders = Order::where('user_id', Auth::id())->paginate(10);
+    //     dd($orders); // Dump and die to check the variable type
+    //     return view('orders.index', compact('orders'));
+    // }
+
 
     public function orderhistory()
 {
     // Retrieve all orders associated with the authenticated user
-    $orders = Order::where('user_id', Auth::id())->get();
-
-    // Return the view with order history data
+    $orders = Order::where('user_id', Auth::id())->paginate(10);
+    // Check if the authenticated user is an admin
+    if (Auth::user()->is_admin == 1) {
+        return redirect()->route('orders.indexAll');
+    }
+    //dd($orders); // Dump and die to check the variable type
     return view('orders.index', compact('orders'));
 }
 
 
-public function show(Order $order)
+public function showDetails(Order $order)
 {
     // This retrieves all order details linked to the specific order
     $orderDetails = $order->orderDetails()->with('product')->get();
-    return view('orders.show', compact('order', 'orderDetails'));
+    return view('orders.showDetails', compact('order', 'orderDetails'));
 }
 
     

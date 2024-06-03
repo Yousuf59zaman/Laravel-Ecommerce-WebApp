@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <h2>Register</h2>
-        <form action="{{ route('register') }}" method="post">
+        <form action="{{ url('register') }}" method="post">
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
